@@ -102,6 +102,10 @@ class Invoice(metaclass=PoolMeta):
                 ])
 
     @classmethod
+    def update_commission_before_cancel(cls, commissions):
+        return
+
+    @classmethod
     @ModelView.button
     @Workflow.transition('cancelled')
     def cancel(cls, invoices):
@@ -122,6 +126,7 @@ class Invoice(metaclass=PoolMeta):
             ids = [i.id for i in sub_invoices]
             to_delete += cls._get_commissions_to_delete(ids)
             to_cancel = cls._get_commissions_to_cancel(ids)
+            cls.update_commission_before_cancel(to_cancel)
             for commission in Commission.copy(to_cancel):
                 commission.amount *= -1
                 to_save.append(commission)
