@@ -8,10 +8,10 @@ from trytond.pyson import Eval
 
 
 __all__ = ['Sale', 'SaleLine']
-__metaclass__ = PoolMeta
 
 
 class Sale:
+    __metaclass__ = PoolMeta
     __name__ = 'sale.sale'
     agent = fields.Many2One('commission.agent', 'Commission Agent',
         domain=[
@@ -22,8 +22,8 @@ class Sale:
             },
         depends=['state', 'company'])
 
-    def create_invoice(self, invoice_type):
-        invoice = super(Sale, self).create_invoice(invoice_type)
+    def create_invoice(self):
+        invoice = super(Sale, self).create_invoice()
         if invoice:
             invoice.agent = self.agent
             invoice.save()
@@ -31,6 +31,7 @@ class Sale:
 
 
 class SaleLine:
+    __metaclass__ = PoolMeta
     __name__ = 'sale.line'
     principal = fields.Many2One('commission.agent', 'Commission Principal',
         domain=[
@@ -38,8 +39,8 @@ class SaleLine:
             ('company', '=', Eval('_parent_sale', {}).get('company', -1)),
             ])
 
-    def get_invoice_line(self, invoice_type):
-        lines = super(SaleLine, self).get_invoice_line(invoice_type)
+    def get_invoice_line(self):
+        lines = super(SaleLine, self).get_invoice_line()
         if self.principal:
             for line in lines:
                 if line.product == self.product:

@@ -12,7 +12,7 @@ Imports::
     ...     get_company
     >>> from trytond.modules.account.tests.tools import create_fiscalyear, \
     ...     create_chart, get_accounts, create_tax, set_tax_code
-    >>> from.trytond.modules.account_invoice.tests.tools import \
+    >>> from trytond.modules.account_invoice.tests.tools import \
     ...     set_fiscalyear_invoice_sequences, create_payment_term
     >>> today = datetime.date.today()
 
@@ -175,7 +175,7 @@ Create commission invoices::
     >>> create_invoice.execute('create_')
 
     >>> invoice, = Invoice.find([
-    ...         ('type', '=', 'in_invoice'),
+    ...         ('type', '=', 'in'),
     ...         ])
     >>> invoice.total_amount
     Decimal('10.00')
@@ -186,7 +186,7 @@ Create commission invoices::
     True
 
     >>> invoice, = Invoice.find([
-    ...         ('type', '=', 'out_invoice'),
+    ...         ('type', '=', 'out'),
     ...         ('party', '=', principal.party.id),
     ...         ])
     >>> invoice.total_amount
