@@ -10,9 +10,9 @@ try:
 except ImportError:
     Null = None
 from sql.aggregate import Sum
-from sql.conditionals import Case
 
-from trytond.model import ModelView, ModelSQL, MatchMixin, fields
+from trytond.model import ModelView, ModelSQL, MatchMixin, fields, \
+    sequence_ordered
 from trytond.pyson import Eval, Bool, If, Id, PYSONEncoder
 from trytond.tools import decistmt, grouped_slice, reduce_ids
 from trytond.pool import Pool
@@ -150,13 +150,12 @@ class Plan(ModelSQL, ModelView):
                 return line.get_amount(**context)
 
 
-class PlanLines(ModelSQL, ModelView, MatchMixin):
+class PlanLines(sequence_ordered(), ModelSQL, ModelView, MatchMixin):
     'Commission Plan Line'
     __name__ = 'commission.plan.line'
     plan = fields.Many2One('commission.plan', 'Plan', required=True,
         ondelete='CASCADE')
     product = fields.Many2One('product.product', 'Product')
-    sequence = fields.Integer('Sequence')
     formula = fields.Char('Formula', required=True,
         help=('Python expression that will be evaluated with:\n'
             '- amount: the original amount'))
@@ -164,17 +163,11 @@ class PlanLines(ModelSQL, ModelView, MatchMixin):
     @classmethod
     def __setup__(cls):
         super(PlanLines, cls).__setup__()
-        cls._order.insert(0, ('sequence', 'ASC'))
         cls._error_messages.update({
                 'invalid_formula': ('Invalid formula "%(formula)s" in '
                     'commission plan line "%(line)s" with exception '
                     '"%(exception)s".'),
                 })
-
-    @staticmethod
-    def order_sequence(tables):
-        table, _ = tables[None]
-        return [Case((table.sequence == Null, 0), else_=1), table.sequence]
 
     @staticmethod
     def default_formula():
@@ -452,13 +445,13 @@ class CreateInvoiceAsk(ModelView):
     __name__ = 'commission.create_invoice.ask'
     from_ = fields.Date('From',
         domain=[
-            If(Bool(Eval('to')), [('from', '<=', Eval('to'))],
+            If(Eval('to') & Eval('from_'), [('from_', '<=', Eval('to'))],
                 []),
             ],
         depends=['to'])
     to = fields.Date('To',
         domain=[
-            If(Bool(Eval('from_')), [('to', '>=', Eval('from_'))],
+            If(Eval('from_') & Eval('to'), [('to', '>=', Eval('from_'))],
                 []),
             ],
         depends=['from_'])
