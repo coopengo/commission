@@ -28,85 +28,104 @@ msgctxt "field:commission,agent:"
 msgid "Agent"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:commission,amount:"
 msgid "Amount"
-msgstr ""
+msgstr "ມູນຄ່າ"
 
+#, fuzzy
 msgctxt "field:commission,create_date:"
 msgid "Create Date"
-msgstr ""
+msgstr "ສ້າງວັນທີ"
 
+#, fuzzy
 msgctxt "field:commission,create_uid:"
 msgid "Create User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້ງານ"
 
+#, fuzzy
 msgctxt "field:commission,currency:"
 msgid "Currency"
-msgstr ""
+msgstr "ສະກຸນເງິນ"
 
+#, fuzzy
 msgctxt "field:commission,date:"
 msgid "Date"
-msgstr ""
+msgstr "ວັນທີ:"
 
+#, fuzzy
 msgctxt "field:commission,id:"
 msgid "ID"
-msgstr ""
+msgstr "ເລດລຳດັບ"
 
+#, fuzzy
 msgctxt "field:commission,invoice_line:"
 msgid "Invoice Line"
-msgstr ""
+msgstr "ລາຍການ"
 
 msgctxt "field:commission,invoice_state:"
 msgid "Invoice State"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:commission,origin:"
 msgid "Origin"
-msgstr ""
+msgstr "ລາຍການຂັ້ນຕົ້ນ"
 
+#, fuzzy
 msgctxt "field:commission,product:"
 msgid "Product"
-msgstr ""
+msgstr "ຜະລິດຕະພັນ"
 
+#, fuzzy
 msgctxt "field:commission,rec_name:"
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
+#, fuzzy
 msgctxt "field:commission,type_:"
 msgid "Type"
-msgstr ""
+msgstr "ຮູບແບບ"
 
+#, fuzzy
 msgctxt "field:commission,write_date:"
 msgid "Write Date"
-msgstr ""
+msgstr "ວັນທີບັນທຶກ"
 
+#, fuzzy
 msgctxt "field:commission,write_uid:"
 msgid "Write User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້"
 
+#, fuzzy
 msgctxt "field:commission.agent,company:"
 msgid "Company"
-msgstr ""
+msgstr "ຫ້ອງການ/ສຳນັກງານ"
 
+#, fuzzy
 msgctxt "field:commission.agent,create_date:"
 msgid "Create Date"
-msgstr ""
+msgstr "ສ້າງວັນທີ"
 
+#, fuzzy
 msgctxt "field:commission.agent,create_uid:"
 msgid "Create User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້ງານ"
 
+#, fuzzy
 msgctxt "field:commission.agent,currency:"
 msgid "Currency"
-msgstr ""
+msgstr "ສະກຸນເງິນ"
 
+#, fuzzy
 msgctxt "field:commission.agent,id:"
 msgid "ID"
-msgstr ""
+msgstr "ເລດລຳດັບ"
 
+#, fuzzy
 msgctxt "field:commission.agent,party:"
 msgid "Party"
-msgstr ""
+msgstr "ພາກສ່ວນ"
 
 msgctxt "field:commission.agent,pending_amount:"
 msgid "Pending Amount"
@@ -116,37 +135,43 @@ msgctxt "field:commission.agent,plan:"
 msgid "Plan"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:commission.agent,rec_name:"
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
+#, fuzzy
 msgctxt "field:commission.agent,type_:"
 msgid "Type"
-msgstr ""
+msgstr "ຮູບແບບ"
 
+#, fuzzy
 msgctxt "field:commission.agent,write_date:"
 msgid "Write Date"
-msgstr ""
+msgstr "ວັນທີບັນທຶກ"
 
+#, fuzzy
 msgctxt "field:commission.agent,write_uid:"
 msgid "Write User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້"
 
 msgctxt "field:commission.create_invoice.ask,from_:"
 msgid "From"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:commission.create_invoice.ask,id:"
 msgid "ID"
-msgstr ""
+msgstr "ເລດລຳດັບ"
 
 msgctxt "field:commission.create_invoice.ask,to:"
 msgid "To"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:commission.create_invoice.ask,type_:"
 msgid "Type"
-msgstr ""
+msgstr "ຮູບແບບ"
 
 msgctxt "field:commission.plan,commission_method:"
 msgid "Commission Method"
@@ -156,77 +181,93 @@ msgctxt "field:commission.plan,commission_product:"
 msgid "Commission Product"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:commission.plan,create_date:"
 msgid "Create Date"
-msgstr ""
+msgstr "ສ້າງວັນທີ"
 
+#, fuzzy
 msgctxt "field:commission.plan,create_uid:"
 msgid "Create User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້ງານ"
 
+#, fuzzy
 msgctxt "field:commission.plan,id:"
 msgid "ID"
-msgstr ""
+msgstr "ເລດລຳດັບ"
 
+#, fuzzy
 msgctxt "field:commission.plan,lines:"
 msgid "Lines"
-msgstr ""
+msgstr "ຮ່ວງ"
 
+#, fuzzy
 msgctxt "field:commission.plan,name:"
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
+#, fuzzy
 msgctxt "field:commission.plan,rec_name:"
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
+#, fuzzy
 msgctxt "field:commission.plan,write_date:"
 msgid "Write Date"
-msgstr ""
+msgstr "ວັນທີບັນທຶກ"
 
+#, fuzzy
 msgctxt "field:commission.plan,write_uid:"
 msgid "Write User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້"
 
+#, fuzzy
 msgctxt "field:commission.plan.line,create_date:"
 msgid "Create Date"
-msgstr ""
+msgstr "ສ້າງວັນທີ"
 
+#, fuzzy
 msgctxt "field:commission.plan.line,create_uid:"
 msgid "Create User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້ງານ"
 
 msgctxt "field:commission.plan.line,formula:"
 msgid "Formula"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:commission.plan.line,id:"
 msgid "ID"
-msgstr ""
+msgstr "ເລດລຳດັບ"
 
 msgctxt "field:commission.plan.line,plan:"
 msgid "Plan"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:commission.plan.line,product:"
 msgid "Product"
-msgstr ""
+msgstr "ຜະລິດຕະພັນ"
 
+#, fuzzy
 msgctxt "field:commission.plan.line,rec_name:"
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
+#, fuzzy
 msgctxt "field:commission.plan.line,sequence:"
 msgid "Sequence"
-msgstr ""
+msgstr "ລໍາດັບ"
 
+#, fuzzy
 msgctxt "field:commission.plan.line,write_date:"
 msgid "Write Date"
-msgstr ""
+msgstr "ວັນທີບັນທຶກ"
 
+#, fuzzy
 msgctxt "field:commission.plan.line,write_uid:"
 msgid "Write User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້"
 
 msgctxt "field:product.product,principals:"
 msgid "Commission Principals"
@@ -240,33 +281,40 @@ msgctxt "field:product.template-commission.agent,agent:"
 msgid "Agent"
 msgstr ""
 
+#, fuzzy
 msgctxt "field:product.template-commission.agent,create_date:"
 msgid "Create Date"
-msgstr ""
+msgstr "ສ້າງວັນທີ"
 
+#, fuzzy
 msgctxt "field:product.template-commission.agent,create_uid:"
 msgid "Create User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້ງານ"
 
+#, fuzzy
 msgctxt "field:product.template-commission.agent,id:"
 msgid "ID"
-msgstr ""
+msgstr "ເລດລຳດັບ"
 
+#, fuzzy
 msgctxt "field:product.template-commission.agent,rec_name:"
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
+#, fuzzy
 msgctxt "field:product.template-commission.agent,template:"
 msgid "Template"
-msgstr ""
+msgstr "ຮ່າງແບບ"
 
+#, fuzzy
 msgctxt "field:product.template-commission.agent,write_date:"
 msgid "Write Date"
-msgstr ""
+msgstr "ວັນທີບັນທຶກ"
 
+#, fuzzy
 msgctxt "field:product.template-commission.agent,write_uid:"
 msgid "Write User"
-msgstr ""
+msgstr "ສ້າງຜູ້ໃຊ້"
 
 msgctxt "field:sale.line,principal:"
 msgid "Commission Principal"
@@ -358,9 +406,10 @@ msgctxt "model:ir.ui.menu,name:menu_commission_form"
 msgid "Commissions"
 msgstr ""
 
+#, fuzzy
 msgctxt "model:ir.ui.menu,name:menu_configuration"
 msgid "Configuration"
-msgstr ""
+msgstr "ການຕັ້ງຄ່າ"
 
 msgctxt "model:ir.ui.menu,name:menu_plan_form"
 msgid "Commission Plans"
@@ -382,17 +431,20 @@ msgctxt "selection:commission,invoice_state:"
 msgid ""
 msgstr ""
 
+#, fuzzy
 msgctxt "selection:commission,invoice_state:"
 msgid "Canceled"
-msgstr ""
+msgstr "ຍົກເລີກແລ້ວ"
 
+#, fuzzy
 msgctxt "selection:commission,invoice_state:"
 msgid "Invoiced"
-msgstr ""
+msgstr "ໃບເກັບເງິນພາສີທີ່ດິນ"
 
+#, fuzzy
 msgctxt "selection:commission,invoice_state:"
 msgid "Paid"
-msgstr ""
+msgstr "ຈ່າຍແລ້ວ"
 
 msgctxt "selection:commission,type_:"
 msgid "Incoming"
@@ -410,9 +462,10 @@ msgctxt "selection:commission.agent,type_:"
 msgid "Principal Of"
 msgstr ""
 
+#, fuzzy
 msgctxt "selection:commission.create_invoice.ask,type_:"
 msgid "Both"
-msgstr ""
+msgstr "ທັງສອງ"
 
 msgctxt "selection:commission.create_invoice.ask,type_:"
 msgid "Incoming"
@@ -434,45 +487,10 @@ msgctxt "view:account.invoice.line:"
 msgid "Commissions"
 msgstr ""
 
-msgctxt "view:commission.agent:"
-msgid "Agent"
-msgstr ""
-
-msgctxt "view:commission.agent:"
-msgid "Agents"
-msgstr ""
-
-msgctxt "view:commission.create_invoice.ask:"
-msgid "Create Commission Invoice"
-msgstr ""
-
-msgctxt "view:commission.plan.line:"
-msgid "Commission Plan Line"
-msgstr ""
-
-msgctxt "view:commission.plan.line:"
-msgid "Commission Plan Lines"
-msgstr ""
-
-msgctxt "view:commission.plan:"
-msgid "Commission Plan"
-msgstr ""
-
-msgctxt "view:commission.plan:"
-msgid "Commission Plans"
-msgstr ""
-
-msgctxt "view:commission:"
-msgid "Commission"
-msgstr ""
-
-msgctxt "view:commission:"
-msgid "Commissions"
-msgstr ""
-
+#, fuzzy
 msgctxt "view:commission:"
 msgid "Invoice"
-msgstr ""
+msgstr "ໃບເກັບເງິນພາສີທີ່ດິນ"
 
 msgctxt "view:product.template:"
 msgid "Commissions"
@@ -482,10 +500,12 @@ msgctxt "view:sale.line:"
 msgid "Commissions"
 msgstr ""
 
+#, fuzzy
 msgctxt "wizard_button:commission.create_invoice,ask,create_:"
 msgid "OK"
-msgstr ""
+msgstr "ຕົກລົງ"
 
+#, fuzzy
 msgctxt "wizard_button:commission.create_invoice,ask,end:"
 msgid "Cancel"
-msgstr ""
+msgstr "ຍົກເລີກ"
