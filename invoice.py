@@ -55,16 +55,23 @@ class Invoice:
         pool = Pool()
         Date = pool.get('ir.date')
         Commission = pool.get('commission')
+        invoice_line = pool.get('account.invoice.line').__table__()
 
         today = Date.today()
 
         super(Invoice, cls).paid(invoices)
 
+        cursor = Transaction().connection.cursor()
         for sub_invoices in grouped_slice(invoices):
             ids = [i.id for i in sub_invoices]
+            invoice_line_query = invoice_line.select(invoice_line.id,
+                where=(invoice_line.invoice.in_(ids)))
+            cursor.execute(*invoice_line_query)
+            invoice_line_ids = [x[0] for x in cursor.fetchall()]
             commissions = Commission.search([
                     ('date', '=', None),
-                    ('origin.invoice', 'in', ids, 'account.invoice.line'),
+                    ('origin', 'in', ['account.invoice.line,' + str(x)
+                            for x in invoice_line_ids]),
                     ])
             Commission.write(commissions, {
                     'date': today,
