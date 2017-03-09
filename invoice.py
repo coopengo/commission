@@ -63,6 +63,7 @@ class Invoice:
 
         for sub_invoices in grouped_slice(invoices):
             ids = [i.id for i in sub_invoices]
+            #JMO : Query optimization
             commissions = Commission.search([
                     ('date', '=', None),
                     ('origin', 'in', ['account.invoice.line,' + str(x.id)
