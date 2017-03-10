@@ -55,6 +55,7 @@ class Invoice:
         pool = Pool()
         Date = pool.get('ir.date')
         Commission = pool.get('commission')
+        InvoiceLine = pool.get('account.invoice.line')
 
         today = Date.today()
 
@@ -62,9 +63,11 @@ class Invoice:
 
         for sub_invoices in grouped_slice(invoices):
             ids = [i.id for i in sub_invoices]
+            # JMO : Query optimization
             commissions = Commission.search([
                     ('date', '=', None),
-                    ('origin.invoice', 'in', ids, 'account.invoice.line'),
+                    ('origin', 'in', [str(x) for x in InvoiceLine.search(
+                                [('invoice', 'in', ids)])]),
                     ])
             Commission.write(commissions, {
                     'date': today,
