@@ -104,9 +104,9 @@ class Agent(ModelSQL, ModelView):
     @property
     def account(self):
         if self.type_ == 'agent':
-            return self.party.account_payable
+            return self.party.account_payable_used
         elif self.type_ == 'principal':
-            return self.party.account_receivable
+            return self.party.account_receivable_used
 
 
 class Plan(ModelSQL, ModelView):
@@ -144,8 +144,11 @@ class Plan(ModelSQL, ModelView):
         if pattern is None:
             pattern = {}
         if product:
-            pattern['categories'] = [c.id for c in product.categories]
+            pattern['categories'] = [c.id for c in product.categories_all]
             pattern['product'] = product.id
+        else:
+            pattern['categories'] = []
+            pattern['product'] = None
         context = self.get_context_formula(amount, product)
         for line in self.lines:
             if line.match(pattern):
