@@ -27,4 +27,5 @@ def register():
     Pool.register(
         CreateInvoice,
         party.PartyReplace,
+        party.PartyErase,
         module='commission', type_='wizard')
