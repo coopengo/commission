@@ -12,7 +12,7 @@ Imports::
     >>> from trytond.modules.company.tests.tools import create_company, \
     ...     get_company
     >>> from trytond.modules.account.tests.tools import create_fiscalyear, \
-    ...     create_chart, get_accounts, create_tax, set_tax_code
+    ...     create_chart, get_accounts, create_tax
     >>> from trytond.modules.account_invoice.tests.tools import \
     ...     set_fiscalyear_invoice_sequences, create_payment_term
     >>> today = datetime.date.today()
@@ -103,7 +103,6 @@ Create product sold::
     >>> template.default_uom = unit
     >>> template.type = 'service'
     >>> template.list_price = Decimal(100)
-    >>> template.cost_price = Decimal(100)
     >>> template.account_expense = accounts['expense']
     >>> template.account_revenue = accounts['revenue']
     >>> template.principals.append(principal)

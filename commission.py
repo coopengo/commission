@@ -141,10 +141,17 @@ class Plan(ModelSQL, ModelView):
 
     def compute(self, amount, product, pattern=None):
         'Compute commission amount for the amount'
+        def parents(categories):
+            for category in categories:
+                while category:
+                    yield category
+                    category = category.parent
+
         if pattern is None:
             pattern = {}
         if product:
-            pattern['categories'] = [c.id for c in product.categories_all]
+            pattern['categories'] = [
+                c.id for c in parents(product.categories_all)]
             pattern['product'] = product.id
         else:
             pattern['categories'] = []
@@ -253,6 +260,7 @@ class Commission(ModelSQL, ModelView):
         cls._buttons.update({
                 'invoice': {
                     'invisible': Bool(Eval('invoice_line')),
+                    'depends': ['invoice_line'],
                     },
                 })
 
