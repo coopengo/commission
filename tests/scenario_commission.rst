@@ -43,6 +43,15 @@ Create customer::
     >>> customer = Party(name='Customer')
     >>> customer.save()
 
+Create account category::
+
+    >>> ProductCategory = Model.get('product.category')
+    >>> account_category = ProductCategory(name="Account Category")
+    >>> account_category.accounting = True
+    >>> account_category.account_expense = accounts['expense']
+    >>> account_category.account_revenue = accounts['revenue']
+    >>> account_category.save()
+
 Create commission product::
 
     >>> Uom = Model.get('product.uom')
@@ -53,8 +62,7 @@ Create commission product::
     >>> template.default_uom = unit
     >>> template.type = 'service'
     >>> template.list_price = Decimal(0)
-    >>> template.account_expense = accounts['expense']
-    >>> template.account_revenue = accounts['revenue']
+    >>> template.account_category = account_category
     >>> template.save()
     >>> commission_product, = template.products
 
@@ -103,8 +111,7 @@ Create product sold::
     >>> template.default_uom = unit
     >>> template.type = 'service'
     >>> template.list_price = Decimal(100)
-    >>> template.account_expense = accounts['expense']
-    >>> template.account_revenue = accounts['revenue']
+    >>> template.account_category = account_category
     >>> template.principals.append(principal)
     >>> template.save()
     >>> product, = template.products
@@ -132,7 +139,7 @@ Post invoice::
     >>> [c.amount for c in line.commissions]
     [Decimal('10.0000'), Decimal('10.0000')]
     >>> [c.invoice_state for c in line.commissions]
-    [u'', u'']
+    ['', '']
 
 Pending amount for agent::
 
@@ -174,7 +181,7 @@ Create commission invoices::
     >>> Commission = Model.get('commission')
     >>> commissions = Commission.find([])
     >>> [c.invoice_state for c in commissions]
-    [u'invoiced', u'invoiced']
+    ['invoiced', 'invoiced']
 
 Credit invoice::
 
