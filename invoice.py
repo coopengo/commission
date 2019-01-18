@@ -53,6 +53,12 @@ class Invoice:
     @classmethod
     @Workflow.transition('paid')
     def paid(cls, invoices):
+        super(Invoice, cls).paid(invoices)
+        if invoices:
+            cls._set_paid_commissions_dates(invoices)
+
+    @classmethod
+    def _set_paid_commissions_dates(cls, invoices):
         pool = Pool()
         Date = pool.get('ir.date')
         Commission = pool.get('commission')
@@ -60,11 +66,8 @@ class Invoice:
 
         today = Date.today()
 
-        super(Invoice, cls).paid(invoices)
-
         for sub_invoices in grouped_slice(invoices):
             ids = [i.id for i in sub_invoices]
-            # JMO : Query optimization
             commissions = Commission.search([
                     ('date', '=', None),
                     ('origin', 'in', [str(x) for x in InvoiceLine.search(
