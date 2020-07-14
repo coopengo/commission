@@ -4,16 +4,14 @@ from trytond.pool import PoolMeta
 from trytond.model import ModelSQL, fields
 
 
-__all__ = ['Template', 'Template_Agent', 'Product']
-
-
 class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
     principals = fields.Many2Many('product.template-commission.agent',
         'template', 'agent', 'Commission Principals',
         domain=[
             ('type_', '=', 'principal'),
-            ])
+            ],
+        help="The principals who pay a commission when the product is sold.")
 
     @property
     def principal(self):

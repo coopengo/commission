@@ -2,57 +2,53 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-#, fuzzy
 msgctxt "field:account.invoice,agent:"
 msgid "Commission Agent"
-msgstr "Commission Plans"
+msgstr ""
 
-#, fuzzy
 msgctxt "field:account.invoice.line,commissions:"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
-#, fuzzy
 msgctxt "field:account.invoice.line,from_commissions:"
 msgid "From Commissions"
-msgstr "From Commissions"
+msgstr ""
 
 msgctxt "field:account.invoice.line,principal:"
 msgid "Commission Principal"
 msgstr ""
 
-#, fuzzy
 msgctxt "field:commission,agent:"
 msgid "Agent"
-msgstr "Agents"
+msgstr ""
 
 msgctxt "field:commission,amount:"
 msgid "Amount"
-msgstr ""
+msgstr "Jumlah"
 
 msgctxt "field:commission,currency:"
 msgid "Currency"
-msgstr ""
+msgstr "Mata uang"
 
 msgctxt "field:commission,date:"
 msgid "Date"
-msgstr ""
+msgstr "Tanggal"
 
 msgctxt "field:commission,invoice_line:"
 msgid "Invoice Line"
-msgstr ""
+msgstr "Baris Faktur"
 
 msgctxt "field:commission,invoice_state:"
 msgid "Invoice State"
-msgstr ""
+msgstr "Status Faktur"
 
 msgctxt "field:commission,origin:"
 msgid "Origin"
-msgstr ""
+msgstr "Asal"
 
 msgctxt "field:commission,product:"
 msgid "Product"
-msgstr ""
+msgstr "Produk"
 
 msgctxt "field:commission,type_:"
 msgid "Type"
@@ -60,15 +56,15 @@ msgstr ""
 
 msgctxt "field:commission.agent,company:"
 msgid "Company"
-msgstr ""
+msgstr "Perusahaan"
 
 msgctxt "field:commission.agent,currency:"
 msgid "Currency"
-msgstr ""
+msgstr "Mata uang"
 
 msgctxt "field:commission.agent,party:"
 msgid "Party"
-msgstr ""
+msgstr "Pihak"
 
 msgctxt "field:commission.agent,pending_amount:"
 msgid "Pending Amount"
@@ -86,22 +82,24 @@ msgctxt "field:commission.agent,type_:"
 msgid "Type"
 msgstr ""
 
-#, fuzzy
 msgctxt "field:commission.agent.selection,agent:"
 msgid "Agent"
-msgstr "Agents"
+msgstr ""
 
+#, fuzzy
 msgctxt "field:commission.agent.selection,end_date:"
 msgid "End Date"
-msgstr ""
+msgstr "Tanggal"
 
+#, fuzzy
 msgctxt "field:commission.agent.selection,party:"
 msgid "Party"
-msgstr ""
+msgstr "Pihak"
 
+#, fuzzy
 msgctxt "field:commission.agent.selection,start_date:"
 msgid "Start Date"
-msgstr ""
+msgstr "Tanggal Penulisan"
 
 msgctxt "field:commission.create_invoice.ask,from_:"
 msgid "From"
@@ -109,7 +107,7 @@ msgstr ""
 
 msgctxt "field:commission.create_invoice.ask,to:"
 msgid "To"
-msgstr ""
+msgstr "Kepada"
 
 msgctxt "field:commission.create_invoice.ask,type_:"
 msgid "Type"
@@ -117,7 +115,7 @@ msgstr ""
 
 msgctxt "field:commission.plan,commission_method:"
 msgid "Commission Method"
-msgstr ""
+msgstr "Metode Komisi"
 
 msgctxt "field:commission.plan,commission_product:"
 msgid "Commission Product"
@@ -125,15 +123,15 @@ msgstr ""
 
 msgctxt "field:commission.plan,lines:"
 msgid "Lines"
-msgstr ""
+msgstr "Baris"
 
 msgctxt "field:commission.plan,name:"
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 msgctxt "field:commission.plan.line,category:"
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 msgctxt "field:commission.plan.line,formula:"
 msgid "Formula"
@@ -145,12 +143,11 @@ msgstr ""
 
 msgctxt "field:commission.plan.line,product:"
 msgid "Product"
-msgstr ""
+msgstr "Produk"
 
-#, fuzzy
 msgctxt "field:party.party,agents:"
 msgid "Agents"
-msgstr "Agents"
+msgstr ""
 
 msgctxt "field:product.product,principals:"
 msgid "Commission Principals"
@@ -160,10 +157,9 @@ msgctxt "field:product.template,principals:"
 msgid "Commission Principals"
 msgstr ""
 
-#, fuzzy
 msgctxt "field:product.template-commission.agent,agent:"
 msgid "Agent"
-msgstr "Agents"
+msgstr ""
 
 msgctxt "field:product.template-commission.agent,template:"
 msgid "Template"
@@ -173,10 +169,9 @@ msgctxt "field:sale.line,principal:"
 msgid "Commission Principal"
 msgstr ""
 
-#, fuzzy
 msgctxt "field:sale.sale,agent:"
 msgid "Commission Agent"
-msgstr "Commission Plans"
+msgstr ""
 
 msgctxt "help:account.invoice,agent:"
 msgid "The agent who receives a commission for the invoice."
@@ -186,28 +181,25 @@ msgctxt "help:account.invoice.line,principal:"
 msgid "The principal who pays a commission for the invoice line."
 msgstr ""
 
-#, fuzzy
 msgctxt "help:commission,date:"
 msgid "When the commission is due."
-msgstr "Create Commission Invoices"
+msgstr ""
 
 msgctxt "help:commission,invoice_state:"
 msgid "The current state of the invoice that the commission appears on."
 msgstr ""
 
-#, fuzzy
 msgctxt "help:commission,origin:"
 msgid "The source of the commission."
-msgstr "Create Commission Invoices"
+msgstr ""
 
 msgctxt "help:commission,product:"
 msgid "The product that is used on the invoice line."
 msgstr ""
 
-#, fuzzy
 msgctxt "help:commission.agent,party:"
 msgid "The party for whom the commission is calculated."
-msgstr "Create Commission Invoices"
+msgstr ""
 
 msgctxt "help:commission.agent,plan:"
 msgid "The plan used to calculate the commission."
@@ -221,25 +213,21 @@ msgctxt "help:commission.agent.selection,start_date:"
 msgid "The first date that the agent will be considered for selection."
 msgstr ""
 
-#, fuzzy
 msgctxt "help:commission.create_invoice.ask,from_:"
 msgid "Limit to commissions from this date."
-msgstr "Create Commission Invoices"
+msgstr ""
 
-#, fuzzy
 msgctxt "help:commission.create_invoice.ask,to:"
 msgid "Limit to commissions to this date."
-msgstr "Create Commission Invoices"
+msgstr ""
 
-#, fuzzy
 msgctxt "help:commission.create_invoice.ask,type_:"
 msgid "Limit to commissions of this type."
-msgstr "Create Commission Invoices"
+msgstr ""
 
-#, fuzzy
 msgctxt "help:commission.plan,commission_method:"
 msgid "When the commission is due."
-msgstr "Create Commission Invoices"
+msgstr ""
 
 msgctxt "help:commission.plan,commission_product:"
 msgid "The product that is used on the invoice lines."
@@ -286,40 +274,35 @@ msgstr ""
 
 msgctxt "model:account.journal,name:journal_commission"
 msgid "Commission"
-msgstr "Commission"
+msgstr "Komisi"
 
-#, fuzzy
 msgctxt "model:commission,name:"
 msgid "Commission"
-msgstr "Commission"
+msgstr "Komisi"
 
-#, fuzzy
 msgctxt "model:commission.agent,name:"
 msgid "Commission Agent"
-msgstr "Commission Plans"
+msgstr ""
 
 msgctxt "model:commission.agent.selection,name:"
 msgid "Agent Selection"
 msgstr ""
 
-#, fuzzy
 msgctxt "model:commission.create_invoice.ask,name:"
 msgid "Create Commission Invoice"
-msgstr "Create Commission Invoices"
+msgstr ""
 
-#, fuzzy
 msgctxt "model:commission.plan,name:"
 msgid "Commission Plan"
-msgstr "Commission Plans"
+msgstr ""
 
-#, fuzzy
 msgctxt "model:commission.plan.line,name:"
 msgid "Commission Plan Line"
-msgstr "Commission Plans"
+msgstr ""
 
 msgctxt "model:ir.action,name:act_agent_form"
 msgid "Agents"
-msgstr "Agents"
+msgstr ""
 
 msgctxt "model:ir.action,name:act_agent_selections"
 msgid "Selections"
@@ -327,27 +310,27 @@ msgstr ""
 
 msgctxt "model:ir.action,name:act_commission_create_invoice"
 msgid "Create Commission Invoices"
-msgstr "Create Commission Invoices"
+msgstr ""
 
 msgctxt "model:ir.action,name:act_commission_form"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
 msgctxt "model:ir.action,name:act_commission_form2"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
 msgctxt "model:ir.action,name:act_commission_from_relate"
 msgid "From Commissions"
-msgstr "From Commissions"
+msgstr ""
 
 msgctxt "model:ir.action,name:act_commission_relate"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
 msgctxt "model:ir.action,name:act_plan_form"
 msgid "Commission Plans"
-msgstr "Commission Plans"
+msgstr ""
 
 msgctxt "model:ir.message,text:msg_erase_party_pending_commission"
 msgid ""
@@ -363,31 +346,31 @@ msgstr ""
 
 msgctxt "model:ir.model.button,string:commission_invoice_button"
 msgid "Invoice"
-msgstr "Invoice"
+msgstr "Faktur"
 
 msgctxt "model:ir.ui.menu,name:menu_agent_form"
 msgid "Agents"
-msgstr "Agents"
+msgstr ""
 
 msgctxt "model:ir.ui.menu,name:menu_commission"
 msgid "Commission"
-msgstr "Commission"
+msgstr "Komisi"
 
 msgctxt "model:ir.ui.menu,name:menu_commission_create_invoice"
 msgid "Create Commission Invoices"
-msgstr "Create Commission Invoices"
+msgstr ""
 
 msgctxt "model:ir.ui.menu,name:menu_commission_form"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
 msgctxt "model:ir.ui.menu,name:menu_configuration"
 msgid "Configuration"
-msgstr "Configuration"
+msgstr "Konfigurasi"
 
 msgctxt "model:ir.ui.menu,name:menu_plan_form"
 msgid "Commission Plans"
-msgstr "Commission Plans"
+msgstr ""
 
 msgctxt "model:product.template-commission.agent,name:"
 msgid "Product Template - Commission Agent"
@@ -395,25 +378,23 @@ msgstr ""
 
 msgctxt "model:res.group,name:group_commission"
 msgid "Commission"
-msgstr "Commission"
+msgstr "Komisi"
 
 msgctxt "model:res.group,name:group_commission_admin"
 msgid "Commission Administration"
-msgstr "Commission Administration"
+msgstr ""
 
-#, fuzzy
 msgctxt "selection:account.journal,type:"
 msgid "Commission"
-msgstr "Commission"
+msgstr "Komisi"
 
 msgctxt "selection:commission,invoice_state:"
 msgid "Canceled"
 msgstr ""
 
-#, fuzzy
 msgctxt "selection:commission,invoice_state:"
 msgid "Invoiced"
-msgstr "Invoice"
+msgstr ""
 
 msgctxt "selection:commission,invoice_state:"
 msgid "Paid"
@@ -455,10 +436,9 @@ msgctxt "selection:commission.plan,commission_method:"
 msgid "On Posting"
 msgstr ""
 
-#, fuzzy
 msgctxt "view:account.invoice.line:"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
 msgctxt "view:commission.agent.selection:"
 msgid "Criteria"
@@ -467,22 +447,20 @@ msgstr ""
 #, fuzzy
 msgctxt "view:party.party:"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
-#, fuzzy
 msgctxt "view:product.template:"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
-#, fuzzy
 msgctxt "view:sale.line:"
 msgid "Commissions"
-msgstr "Commissions"
+msgstr "Komisi"
 
 msgctxt "wizard_button:commission.create_invoice,ask,create_:"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgctxt "wizard_button:commission.create_invoice,ask,end:"
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
