@@ -26,14 +26,6 @@ msgctxt "field:commission,amount:"
 msgid "Amount"
 msgstr "Väärtus"
 
-msgctxt "field:commission,create_date:"
-msgid "Create Date"
-msgstr "Loomise kuupäev"
-
-msgctxt "field:commission,create_uid:"
-msgid "Create User"
-msgstr "Looja"
-
 msgctxt "field:commission,currency:"
 msgid "Currency"
 msgstr "Valuuta"
@@ -41,10 +33,6 @@ msgstr "Valuuta"
 msgctxt "field:commission,date:"
 msgid "Date"
 msgstr "Kuupäev"
-
-msgctxt "field:commission,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:commission,invoice_line:"
 msgid "Invoice Line"
@@ -62,41 +50,17 @@ msgctxt "field:commission,product:"
 msgid "Product"
 msgstr "Toode"
 
-msgctxt "field:commission,rec_name:"
-msgid "Record Name"
-msgstr "Kirje nimi"
-
 msgctxt "field:commission,type_:"
 msgid "Type"
 msgstr "Tüüp"
-
-msgctxt "field:commission,write_date:"
-msgid "Write Date"
-msgstr "Muutmise kuupäev"
-
-msgctxt "field:commission,write_uid:"
-msgid "Write User"
-msgstr "Muutja"
 
 msgctxt "field:commission.agent,company:"
 msgid "Company"
 msgstr "Ettevõte"
 
-msgctxt "field:commission.agent,create_date:"
-msgid "Create Date"
-msgstr "Loomise kuupäev"
-
-msgctxt "field:commission.agent,create_uid:"
-msgid "Create User"
-msgstr "Looja"
-
 msgctxt "field:commission.agent,currency:"
 msgid "Currency"
 msgstr "Valuuta"
-
-msgctxt "field:commission.agent,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:commission.agent,party:"
 msgid "Party"
@@ -110,29 +74,37 @@ msgctxt "field:commission.agent,plan:"
 msgid "Plan"
 msgstr "Plaan"
 
-msgctxt "field:commission.agent,rec_name:"
-msgid "Record Name"
-msgstr "Kirje nimi"
+msgctxt "field:commission.agent,selections:"
+msgid "Selections"
+msgstr ""
 
 msgctxt "field:commission.agent,type_:"
 msgid "Type"
 msgstr "Tüüp"
 
-msgctxt "field:commission.agent,write_date:"
-msgid "Write Date"
-msgstr "Muutmise kuupäev"
+#, fuzzy
+msgctxt "field:commission.agent.selection,agent:"
+msgid "Agent"
+msgstr "Agent"
 
-msgctxt "field:commission.agent,write_uid:"
-msgid "Write User"
-msgstr "Muutja"
+#, fuzzy
+msgctxt "field:commission.agent.selection,end_date:"
+msgid "End Date"
+msgstr "Kuupäev"
+
+#, fuzzy
+msgctxt "field:commission.agent.selection,party:"
+msgid "Party"
+msgstr "Osapool"
+
+#, fuzzy
+msgctxt "field:commission.agent.selection,start_date:"
+msgid "Start Date"
+msgstr "Muutmise kuupäev"
 
 msgctxt "field:commission.create_invoice.ask,from_:"
 msgid "From"
 msgstr "Kellelt"
-
-msgctxt "field:commission.create_invoice.ask,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:commission.create_invoice.ask,to:"
 msgid "To"
@@ -150,18 +122,6 @@ msgctxt "field:commission.plan,commission_product:"
 msgid "Commission Product"
 msgstr "Komisjonikaup"
 
-msgctxt "field:commission.plan,create_date:"
-msgid "Create Date"
-msgstr "Loomise kuupäev"
-
-msgctxt "field:commission.plan,create_uid:"
-msgid "Create User"
-msgstr "Looja"
-
-msgctxt "field:commission.plan,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:commission.plan,lines:"
 msgid "Lines"
 msgstr "Read"
@@ -170,37 +130,13 @@ msgctxt "field:commission.plan,name:"
 msgid "Name"
 msgstr "Nimetus"
 
-msgctxt "field:commission.plan,rec_name:"
-msgid "Record Name"
-msgstr "Kirje nimi"
-
-msgctxt "field:commission.plan,write_date:"
-msgid "Write Date"
-msgstr "Muutmise kuupäev"
-
-msgctxt "field:commission.plan,write_uid:"
-msgid "Write User"
-msgstr "Muutja"
-
 msgctxt "field:commission.plan.line,category:"
 msgid "Category"
 msgstr "Kategooria"
 
-msgctxt "field:commission.plan.line,create_date:"
-msgid "Create Date"
-msgstr "Loomise kuupäev"
-
-msgctxt "field:commission.plan.line,create_uid:"
-msgid "Create User"
-msgstr "Looja"
-
 msgctxt "field:commission.plan.line,formula:"
 msgid "Formula"
 msgstr "Valem"
-
-msgctxt "field:commission.plan.line,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:commission.plan.line,plan:"
 msgid "Plan"
@@ -210,21 +146,10 @@ msgctxt "field:commission.plan.line,product:"
 msgid "Product"
 msgstr "Toode"
 
-msgctxt "field:commission.plan.line,rec_name:"
-msgid "Record Name"
-msgstr "Kirje nimi"
-
-msgctxt "field:commission.plan.line,sequence:"
-msgid "Sequence"
-msgstr "Jada"
-
-msgctxt "field:commission.plan.line,write_date:"
-msgid "Write Date"
-msgstr "Muutmise kuupäev"
-
-msgctxt "field:commission.plan.line,write_uid:"
-msgid "Write User"
-msgstr "Muutja"
+#, fuzzy
+msgctxt "field:party.party,agents:"
+msgid "Agents"
+msgstr "Agendid"
 
 msgctxt "field:product.product,principals:"
 msgid "Commission Principals"
@@ -238,33 +163,9 @@ msgctxt "field:product.template-commission.agent,agent:"
 msgid "Agent"
 msgstr "Agent"
 
-msgctxt "field:product.template-commission.agent,create_date:"
-msgid "Create Date"
-msgstr "Loomise kuupäev"
-
-msgctxt "field:product.template-commission.agent,create_uid:"
-msgid "Create User"
-msgstr "Looja"
-
-msgctxt "field:product.template-commission.agent,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:product.template-commission.agent,rec_name:"
-msgid "Record Name"
-msgstr "Kirje nimi"
-
 msgctxt "field:product.template-commission.agent,template:"
 msgid "Template"
 msgstr "Mall"
-
-msgctxt "field:product.template-commission.agent,write_date:"
-msgid "Write Date"
-msgstr "Muutmise kuupäev"
-
-msgctxt "field:product.template-commission.agent,write_uid:"
-msgid "Write User"
-msgstr "Muutja"
 
 msgctxt "field:sale.line,principal:"
 msgid "Commission Principal"
@@ -274,14 +175,110 @@ msgctxt "field:sale.sale,agent:"
 msgid "Commission Agent"
 msgstr "Komisjoni agent"
 
+msgctxt "help:account.invoice,agent:"
+msgid "The agent who receives a commission for the invoice."
+msgstr ""
+
+msgctxt "help:account.invoice.line,principal:"
+msgid "The principal who pays a commission for the invoice line."
+msgstr ""
+
+#, fuzzy
+msgctxt "help:commission,date:"
+msgid "When the commission is due."
+msgstr "Loo komisjonitasu arve"
+
+msgctxt "help:commission,invoice_state:"
+msgid "The current state of the invoice that the commission appears on."
+msgstr ""
+
+#, fuzzy
+msgctxt "help:commission,origin:"
+msgid "The source of the commission."
+msgstr "Loo komisjonitasu arve"
+
+msgctxt "help:commission,product:"
+msgid "The product that is used on the invoice line."
+msgstr ""
+
+#, fuzzy
+msgctxt "help:commission.agent,party:"
+msgid "The party for whom the commission is calculated."
+msgstr "Loo komisjonitasu arve"
+
+msgctxt "help:commission.agent,plan:"
+msgid "The plan used to calculate the commission."
+msgstr ""
+
+msgctxt "help:commission.agent.selection,end_date:"
+msgid "The last date that the agent will be considered for selection."
+msgstr ""
+
+msgctxt "help:commission.agent.selection,start_date:"
+msgid "The first date that the agent will be considered for selection."
+msgstr ""
+
+#, fuzzy
+msgctxt "help:commission.create_invoice.ask,from_:"
+msgid "Limit to commissions from this date."
+msgstr "Loo komisjonitasu arve"
+
+#, fuzzy
+msgctxt "help:commission.create_invoice.ask,to:"
+msgid "Limit to commissions to this date."
+msgstr "Loo komisjonitasu arve"
+
+#, fuzzy
+msgctxt "help:commission.create_invoice.ask,type_:"
+msgid "Limit to commissions of this type."
+msgstr "Loo komisjonitasu arve"
+
+#, fuzzy
 msgctxt "help:commission.plan,commission_method:"
-msgid "When the commission is due"
+msgid "When the commission is due."
+msgstr "Loo komisjonitasu arve"
+
+msgctxt "help:commission.plan,commission_product:"
+msgid "The product that is used on the invoice lines."
+msgstr ""
+
+msgctxt "help:commission.plan,lines:"
+msgid "The formulas used to calculate the commission for different criteria."
+msgstr ""
+
+msgctxt "help:commission.plan.line,category:"
+msgid "Apply only to products in the category."
 msgstr ""
 
 msgctxt "help:commission.plan.line,formula:"
 msgid ""
-"Python expression that will be evaluated with:\n"
+"The python expression used to calculate the amount of commission for the line.\n"
+"It is evaluated with:\n"
 "- amount: the original amount"
+msgstr ""
+
+msgctxt "help:commission.plan.line,plan:"
+msgid "The plan to which the line belongs."
+msgstr ""
+
+msgctxt "help:commission.plan.line,product:"
+msgid "Apply only to the product."
+msgstr ""
+
+msgctxt "help:product.product,principals:"
+msgid "The principals who pay a commission when the product is sold."
+msgstr ""
+
+msgctxt "help:product.template,principals:"
+msgid "The principals who pay a commission when the product is sold."
+msgstr ""
+
+msgctxt "help:sale.line,principal:"
+msgid "The principal who pays a commission for the line."
+msgstr ""
+
+msgctxt "help:sale.sale,agent:"
+msgid "The agent who receives a commission for the sale."
 msgstr ""
 
 msgctxt "model:account.journal,name:journal_commission"
@@ -295,6 +292,10 @@ msgstr "Komisjonitasu"
 msgctxt "model:commission.agent,name:"
 msgid "Commission Agent"
 msgstr "Komisjoni agent"
+
+msgctxt "model:commission.agent.selection,name:"
+msgid "Agent Selection"
+msgstr ""
 
 msgctxt "model:commission.create_invoice.ask,name:"
 msgid "Create Commission Invoice"
@@ -311,6 +312,10 @@ msgstr "Komisjonitasu plaani rida"
 msgctxt "model:ir.action,name:act_agent_form"
 msgid "Agents"
 msgstr "Agendid"
+
+msgctxt "model:ir.action,name:act_agent_selections"
+msgid "Selections"
+msgstr ""
 
 msgctxt "model:ir.action,name:act_commission_create_invoice"
 msgid "Create Commission Invoices"
@@ -443,6 +448,15 @@ msgstr "Postitusel"
 msgctxt "view:account.invoice.line:"
 msgid "Commissions"
 msgstr "Komisjonitasud"
+
+msgctxt "view:commission.agent.selection:"
+msgid "Criteria"
+msgstr ""
+
+#, fuzzy
+msgctxt "view:party.party:"
+msgid "Commissions"
+msgstr "Komisjonid"
 
 msgctxt "view:product.template:"
 msgid "Commissions"

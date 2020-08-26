@@ -1,15 +1,12 @@
 # This file is part of Tryton.  The COPYRIGHT file at the top level of
 # this repository contains the full copyright notices and license terms.
-
-from decimal import Decimal
-
 from trytond.pool import PoolMeta, Pool
 from trytond.model import ModelView, Workflow, fields
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 from trytond.tools import grouped_slice
 
-__all__ = ['Invoice', 'InvoiceLine']
+from trytond.modules.product import round_price
 
 
 class Invoice(metaclass=PoolMeta):
@@ -23,7 +20,8 @@ class Invoice(metaclass=PoolMeta):
             'invisible': Eval('type') == 'in',
             'readonly': Eval('state', '') != 'draft',
             },
-        depends=['type', 'company', 'state'])
+        depends=['type', 'company', 'state'],
+        help="The agent who receives a commission for the invoice.")
 
     @classmethod
     @ModelView.button
@@ -118,10 +116,9 @@ class Invoice(metaclass=PoolMeta):
 
         Commission.delete(to_delete)
 
-    def _credit(self):
-        credit = super(Invoice, self)._credit()
-        credit.agent = self.agent
-        return credit
+    def _credit(self, **values):
+        values.setdefault('agent', self.agent)
+        return super()._credit(**values)
 
 
 class InvoiceLine(metaclass=PoolMeta):
@@ -136,7 +133,8 @@ class InvoiceLine(metaclass=PoolMeta):
             'invisible': If(Bool(Eval('_parent_invoice')),
                 Eval('_parent_invoice', {}).get('type') == 'in',
                 Eval('invoice_type') == 'in'),
-            }, depends=['invoice_type', 'company'])
+            }, depends=['invoice_type', 'company'],
+        help="The principal who pays a commission for the invoice line.")
     commissions = fields.One2Many('commission', 'origin', 'Commissions',
         readonly=True,
         states={
@@ -177,8 +175,7 @@ class InvoiceLine(metaclass=PoolMeta):
                     self.amount, agent.currency, round=False)
             amount = self._get_commission_amount(amount, plan)
             if amount:
-                digits = Commission.amount.digits
-                amount = amount.quantize(Decimal(str(10.0 ** -digits[1])))
+                amount = round_price(amount)
             if not amount:
                 continue
 

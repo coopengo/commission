@@ -1,33 +1,38 @@
 # This file is part of Tryton.  The COPYRIGHT file at the top level of
 # this repository contains the full copyright notices and license terms.
 from trytond.i18n import gettext
+from trytond.model import fields
 from trytond.pool import PoolMeta, Pool
 
 from trytond.modules.party.exceptions import EraseError
 
-__all__ = ['PartyReplace', 'PartyErase']
+
+class Party(metaclass=PoolMeta):
+    __name__ = 'party.party'
+    agents = fields.One2Many('commission.agent.selection', 'party', "Agents")
 
 
-class PartyReplace(metaclass=PoolMeta):
+class Replace(metaclass=PoolMeta):
     __name__ = 'party.replace'
 
     @classmethod
     def fields_to_replace(cls):
-        return super(PartyReplace, cls).fields_to_replace() + [
+        return super().fields_to_replace() + [
             ('commission.agent', 'party'),
             ]
 
 
-class PartyErase(metaclass=PoolMeta):
+class Erase(metaclass=PoolMeta):
     __name__ = 'party.erase'
 
     def check_erase_company(self, party, company):
         pool = Pool()
         Commission = pool.get('commission')
-        super(PartyErase, self).check_erase_company(party, company)
+        super().check_erase_company(party, company)
 
         commissions = Commission.search([
                 ('agent.party', '=', party.id),
+                ('company', '=', company.id),
                 ('invoice_line', '=', None),
                 ])
         if commissions:
