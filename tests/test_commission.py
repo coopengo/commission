@@ -127,8 +127,9 @@ def suite():
             tearDown=doctest_teardown, encoding='utf-8',
             checker=doctest_checker,
             optionflags=doctest.REPORT_ONLY_FIRST_FAILURE))
-    suite.addTests(doctest.DocFileSuite('scenario_agent_selection.rst',
-            tearDown=doctest_teardown, encoding='utf-8',
-            checker=doctest_checker,
-            optionflags=doctest.REPORT_ONLY_FIRST_FAILURE))
+    # JCA : Sale is not available
+    # suite.addTests(doctest.DocFileSuite('scenario_agent_selection.rst',
+    #         tearDown=doctest_teardown, encoding='utf-8',
+    #         checker=doctest_checker,
+    #         optionflags=doctest.REPORT_ONLY_FIRST_FAILURE))
     return suite
