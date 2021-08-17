@@ -6,6 +6,11 @@ msgctxt "field:account.invoice,agent:"
 msgid "Commission Agent"
 msgstr "Agente de Comissão"
 
+#, fuzzy
+msgctxt "field:account.invoice.credit.start,with_agent:"
+msgid "With Agent"
+msgstr "Agente"
+
 msgctxt "field:account.invoice.line,commissions:"
 msgid "Commissions"
 msgstr "Comissões"
@@ -86,6 +91,15 @@ msgstr "Tipo"
 msgctxt "field:commission.agent.selection,agent:"
 msgid "Agent"
 msgstr "Agente"
+
+#, fuzzy
+msgctxt "field:commission.agent.selection,company:"
+msgid "Company"
+msgstr "Empresa"
+
+msgctxt "field:commission.agent.selection,employee:"
+msgid "Employee"
+msgstr ""
 
 #, fuzzy
 msgctxt "field:commission.agent.selection,end_date:"
@@ -179,6 +193,10 @@ msgctxt "help:account.invoice,agent:"
 msgid "The agent who receives a commission for the invoice."
 msgstr ""
 
+msgctxt "help:account.invoice.credit.start,with_agent:"
+msgid "Check to keep the original invoice's agent."
+msgstr ""
+
 msgctxt "help:account.invoice.line,principal:"
 msgid "The principal who pays a commission for the invoice line."
 msgstr ""
@@ -258,7 +276,7 @@ msgid ""
 "- amount: the original amount"
 msgstr ""
 "Expressão Python que será avaliada com:\n"
-"-  amount: o montante original"
+"- amount: o montante original"
 
 msgctxt "help:commission.plan.line,plan:"
 msgid "The plan to which the line belongs."
@@ -349,8 +367,19 @@ msgstr "Commissions"
 
 #, fuzzy
 msgctxt "model:ir.action,name:act_plan_form"
-msgid "Commission Plans"
-msgstr "Commission Plans"
+msgid "Plans"
+msgstr "Plano"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_commission_form_domain_all"
+msgid "All"
+msgstr ""
+
+#, fuzzy
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_commission_form_domain_to_invoice"
+msgid "To Invoice"
+msgstr "Invoice"
 
 msgctxt "model:ir.message,text:msg_erase_party_pending_commission"
 msgid ""
@@ -370,6 +399,14 @@ msgstr ""
 msgctxt "model:ir.model.button,string:commission_invoice_button"
 msgid "Invoice"
 msgstr "Invoice"
+
+msgctxt "model:ir.rule.group,name:rule_group_agent_companies"
+msgid "User in companies"
+msgstr ""
+
+msgctxt "model:ir.rule.group,name:rule_group_agent_selection_companies"
+msgid "User in companies"
+msgstr ""
 
 #, fuzzy
 msgctxt "model:ir.ui.menu,name:menu_agent_form"
@@ -398,8 +435,8 @@ msgstr "Configuration"
 
 #, fuzzy
 msgctxt "model:ir.ui.menu,name:menu_plan_form"
-msgid "Commission Plans"
-msgstr "Commission Plans"
+msgid "Plans"
+msgstr "Plano"
 
 msgctxt "model:product.template-commission.agent,name:"
 msgid "Product Template - Commission Agent"
@@ -420,8 +457,9 @@ msgctxt "selection:account.journal,type:"
 msgid "Commission"
 msgstr "Commission"
 
+#, fuzzy
 msgctxt "selection:commission,invoice_state:"
-msgid "Canceled"
+msgid "Cancelled"
 msgstr "Cancelado"
 
 msgctxt "selection:commission,invoice_state:"

@@ -8,6 +8,7 @@ from . import invoice
 from . import sale
 from . import product
 from . import party
+from . import ir
 
 
 def register():
@@ -20,11 +21,13 @@ def register():
         commission.CreateInvoiceAsk,
         invoice.Invoice,
         invoice.InvoiceLine,
+        invoice.CreditInvoiceStart,
         product.Template,
         product.Template_Agent,
         product.Product,
         account.Journal,
         party.Party,
+        ir.EmailTemplate,
         module='commission', type_='model')
     Pool.register(
         sale.Sale,
@@ -33,6 +36,7 @@ def register():
         depends=['sale'])
     Pool.register(
         commission.CreateInvoice,
+        invoice.CreditInvoice,
         party.Replace,
         party.Erase,
         module='commission', type_='wizard')

@@ -29,6 +29,10 @@ class Agent(ModelSQL, ModelView):
     'Commission Agent'
     __name__ = 'commission.agent'
     party = fields.Many2One('party.party', "Party", required=True,
+        context={
+            'company': Eval('company', -1),
+            },
+        depends=['company'],
         help="The party for whom the commission is calculated.")
     type_ = fields.Selection([
             ('agent', 'Agent Of'),
@@ -121,7 +125,7 @@ class Agent(ModelSQL, ModelView):
                 where=where,
                 group_by=commission.agent)
             cursor.execute(*query)
-            amounts.update(dict(cursor.fetchall()))
+            amounts.update(dict(cursor))
         for agent_id, amount in amounts.items():
             if amount:
                 # SQLite uses float for SUM
@@ -161,12 +165,34 @@ class AgentSelection(sequence_ordered(), MatchMixin, ModelSQL, ModelView):
         depends=['start_date'],
         help="The last date that the agent will be considered for selection.")
     party = fields.Many2One(
-        'party.party', "Party", ondelete='CASCADE', select=True)
+        'party.party', "Party", ondelete='CASCADE', select=True,
+        context={
+            'company': Eval('company', -1),
+            },
+        depends=['company'])
+    company = fields.Function(fields.Many2One('company.company', "Company"),
+        'on_change_with_company', searcher='search_company')
+    employee = fields.Many2One(
+        'company.employee', "Employee", select=True,
+        domain=[
+            ('company', '=', Eval('company')),
+            ],
+        depends=['company'])
 
     @classmethod
     def __setup__(cls):
         super().__setup__()
         cls._order.insert(0, ('party', 'ASC NULLS LAST'))
+        cls._order.insert(1, ('employee', 'ASC NULLS LAST'))
+
+    @fields.depends('agent', '_parent_agent.company')
+    def on_change_with_company(self, name=None):
+        if self.agent:
+            return self.agent.company.id
+
+    @classmethod
+    def search_company(cls, name, clause):
+        return [('agent.' + clause[0],) + tuple(clause[1:])]
 
     def match(self, pattern):
         pool = Pool()
@@ -256,6 +282,11 @@ class PlanLines(sequence_ordered(), ModelSQL, ModelView, MatchMixin):
         "It is evaluated with:\n"
         "- amount: the original amount")
 
+    @classmethod
+    def __setup__(cls):
+        super().__setup__()
+        cls.__access__.add('plan')
+
     @staticmethod
     def default_formula():
         return 'amount'
@@ -327,7 +358,7 @@ class Commission(ModelSQL, ModelView):
                 ('', ''),
                 ('invoiced', 'Invoiced'),
                 ('paid', 'Paid'),
-                ('cancel', 'Canceled'),
+                ('cancelled', 'Cancelled'),
                 ], "Invoice State",
             help="The current state of the invoice "
             "that the commission appears on."),
@@ -352,11 +383,9 @@ class Commission(ModelSQL, ModelView):
     def get_origin(cls):
         pool = Pool()
         Model = pool.get('ir.model')
+        get_name = Model.get_name
         models = cls._get_origin()
-        models = Model.search([
-                ('model', 'in', models),
-                ])
-        return [(None, '')] + [(m.model, m.name) for m in models]
+        return [(None, '')] + [(m, get_name(m)) for m in models]
 
     @fields.depends('agent')
     def on_change_with_currency(self, name=None):
@@ -381,11 +410,8 @@ class Commission(ModelSQL, ModelView):
         if self.invoice_line:
             state = 'invoiced'
             invoice = self.invoice_line.invoice
-            if invoice:
-                if invoice.state == 'paid':
-                    state = 'paid'
-                elif invoice.state == 'cancel':
-                    state = 'cancel'
+            if invoice and invoice.state in {'paid', 'cancelled'}:
+                state = invoice.state
         return state
 
     @classmethod
@@ -504,6 +530,8 @@ class Commission(ModelSQL, ModelView):
         invoice_line.type = 'line'
         invoice_line.product = product
         invoice_line.quantity = 1
+        invoice_line.company = invoice.company
+        invoice_line.currency = invoice.currency
 
         invoice_line.on_change_product()
 
@@ -537,8 +565,10 @@ class CreateInvoice(Wizard):
     def do_create_(self, action):
         pool = Pool()
         Commission = pool.get('commission')
-        commissions = Commission.search(self.get_domain(),
-            order=[('agent', 'DESC'), ('date', 'DESC')])
+        with Transaction().set_context(_check_access=True):
+            commissions = Commission.search(self.get_domain(),
+                order=[('agent', 'DESC'), ('date', 'DESC')])
+        commissions = Commission.browse(commissions)
         Commission.invoice(commissions)
         invoice_ids = list({c.invoice_line.invoice.id for c in commissions})
         encoder = PYSONEncoder()

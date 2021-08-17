@@ -3,22 +3,20 @@
 this repository contains the full copyright notices and license terms. -->
 <tryton>
     <data>
-        <record model="res.group" id="group_commission_admin">
-            <field name="name">Commission Administration</field>
-        </record>
-        <record model="res.user-res.group"
-            id="user_admin_group_commission_admin">
-            <field name="user" ref="res.user_admin"/>
-            <field name="group" ref="group_commission_admin"/>
-        </record>
-
         <record model="res.group" id="group_commission">
             <field name="name">Commission</field>
         </record>
-        <record model="res.user-res.group"
-            id="user_admin_group_commission">
+        <record model="res.group" id="group_commission_admin">
+            <field name="name">Commission Administration</field>
+            <field name="parent" ref="group_commission"/>
+        </record>
+        <record model="res.user-res.group" id="user_admin_group_commission">
             <field name="user" ref="res.user_admin"/>
             <field name="group" ref="group_commission"/>
+        </record>
+        <record model="res.user-res.group" id="user_admin_group_commission_admin">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_commission_admin"/>
         </record>
 
         <record model="ir.ui.icon" id="commission_icon">
@@ -26,8 +24,16 @@ this repository contains the full copyright notices and license terms. -->
             <field name="path">icons/tryton-commission.svg</field>
         </record>
 
-        <menuitem name="Commission" sequence="5" id="menu_commission"/>
-        <menuitem name="Configuration" parent="menu_commission" id="menu_configuration" sequence="10" icon="tryton-settings"/>
+        <menuitem
+            name="Commission"
+            sequence="100"
+            id="menu_commission"/>
+        <menuitem
+            name="Configuration"
+            parent="menu_commission"
+            sequence="0"
+            id="menu_configuration"
+            icon="tryton-settings"/>
         <record model="ir.ui.menu-res.group"
             id="menu_configuration_group_commission_admin">
             <field name="menu" ref="menu_configuration"/>
@@ -62,8 +68,24 @@ this repository contains the full copyright notices and license terms. -->
             <field name="view" ref="agent_view_form"/>
             <field name="act_window" ref="act_agent_form"/>
         </record>
-        <menuitem parent="menu_commission" action="act_agent_form" sequence="20"
+        <menuitem
+            parent="menu_commission"
+            action="act_agent_form"
+            sequence="20"
             id="menu_agent_form"/>
+
+        <record model="ir.rule.group" id="rule_group_agent_companies">
+            <field name="name">User in companies</field>
+            <field name="model"
+                search="[('model', '=', 'commission.agent')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_agent_companies">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_agent_companies"/>
+        </record>
 
         <record model="ir.model.access" id="access_agent">
             <field name="model" search="[('model', '=', 'commission.agent')]"/>
@@ -125,6 +147,19 @@ this repository contains the full copyright notices and license terms. -->
             <field name="action" ref="act_agent_selections"/>
         </record>
 
+        <record model="ir.rule.group" id="rule_group_agent_selection_companies">
+            <field name="name">User in companies</field>
+            <field name="model"
+                search="[('model', '=', 'commission.agent.selection')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_agent_selection_companies">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_agent_selection_companies"/>
+        </record>
+
         <record model="ir.model.access" id="access_agent_selection">
             <field name="model" search="[('model', '=', 'commission.agent.selection')]"/>
             <field name="perm_read" eval="True"/>
@@ -154,7 +189,7 @@ this repository contains the full copyright notices and license terms. -->
         </record>
 
         <record model="ir.action.act_window" id="act_plan_form">
-            <field name="name">Commission Plans</field>
+            <field name="name">Plans</field>
             <field name="res_model">commission.plan</field>
         </record>
         <record model="ir.action.act_window.view"
@@ -169,7 +204,10 @@ this repository contains the full copyright notices and license terms. -->
             <field name="view" ref="plan_view_form"/>
             <field name="act_window" ref="act_plan_form"/>
         </record>
-        <menuitem parent="menu_configuration" action="act_plan_form" sequence="10"
+        <menuitem
+            parent="menu_configuration"
+            action="act_plan_form"
+            sequence="10"
             id="menu_plan_form"/>
 
         <record model="ir.model.access" id="access_plan">
@@ -206,22 +244,6 @@ this repository contains the full copyright notices and license terms. -->
             <field name="name">plan_line_list_sequence</field>
         </record>
 
-        <record model="ir.model.access" id="access_plan_line">
-            <field name="model" search="[('model', '=', 'commission.plan.line')]"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_delete" eval="False"/>
-        </record>
-        <record model="ir.model.access" id="access_plan_line_commission_admin">
-            <field name="model" search="[('model', '=', 'commission.plan.line')]"/>
-            <field name="group" ref="group_commission_admin"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="True"/>
-            <field name="perm_create" eval="True"/>
-            <field name="perm_delete" eval="True"/>
-        </record>
-
         <record model="ir.ui.view" id="commission_view_form">
             <field name="model">commission</field>
             <field name="type">form</field>
@@ -250,8 +272,24 @@ this repository contains the full copyright notices and license terms. -->
             <field name="view" ref="commission_view_form"/>
             <field name="act_window" ref="act_commission_form"/>
         </record>
-        <menuitem parent="menu_commission" action="act_commission_form"
-            sequence="30" id="menu_commission_form"/>
+        <record model="ir.action.act_window.domain" id="act_commission_form_domain_to_invoice">
+            <field name="name">To Invoice</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain" eval="[('invoice_line', '=', None)]" pyson="1"></field>
+            <field name="count" eval="True"></field>
+            <field name="act_window" ref="act_commission_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_commission_form_domain_all">
+            <field name="name">All</field>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+            <field name="act_window" ref="act_commission_form"/>
+        </record>
+        <menuitem
+            parent="menu_commission"
+            action="act_commission_form"
+            sequence="10"
+            id="menu_commission_form"/>
 
         <record model="ir.action.act_window" id="act_commission_form2">
             <field name="name">Commissions</field>
@@ -304,8 +342,10 @@ this repository contains the full copyright notices and license terms. -->
             <field name="name">commission_create_invoice_ask_form</field>
         </record>
 
-        <menuitem parent="menu_commission" sequence="40"
+        <menuitem
+            parent="menu_commission"
             action="act_commission_create_invoice"
+            sequence="90"
             id="menu_commission_create_invoice"/>
         <record model="ir.ui.menu-res.group"
             id="menu_commission_create_invoice_group_commission">

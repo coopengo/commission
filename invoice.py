@@ -1,5 +1,6 @@
 # This file is part of Tryton.  The COPYRIGHT file at the top level of
 # this repository contains the full copyright notices and license terms.
+from collections import defaultdict
 from trytond.pool import PoolMeta, Pool
 from trytond.model import ModelView, Workflow, fields
 from trytond.pyson import Eval, If, Bool
@@ -24,13 +25,15 @@ class Invoice(metaclass=PoolMeta):
         help="The agent who receives a commission for the invoice.")
 
     @classmethod
-    @ModelView.button
-    @Workflow.transition('posted')
-    def post(cls, invoices):
+    def _journal_types(cls, invoice_type):
+        return super()._journal_types(invoice_type) + ['commission']
+
+    @classmethod
+    def _post(cls, invoices):
         # Create commission only the first time the invoice is posted
         to_commission = [i for i in invoices
             if i.state not in ['posted', 'paid']]
-        super(Invoice, cls).post(invoices)
+        super()._post(invoices)
         cls.create_commissions(to_commission)
 
     @classmethod
@@ -59,20 +62,26 @@ class Invoice(metaclass=PoolMeta):
         pool = Pool()
         Date = pool.get('ir.date')
         Commission = pool.get('commission')
-        InvoiceLine = pool.get('account.invoice.line')
 
         today = Date.today()
 
+        date2commissions = defaultdict(list)
         for sub_invoices in grouped_slice(invoices):
             ids = [i.id for i in sub_invoices]
-            commissions = Commission.search([
-                    ('date', '=', None),
-                    ('origin', 'in', [str(x) for x in InvoiceLine.search(
-                                [('invoice', 'in', ids)])]),
-                    ])
-            Commission.write(commissions, {
-                    'date': today,
-            })
+            for commission in Commission.search([
+                        ('date', '=', None),
+                        ('origin.invoice', 'in', ids, 'account.invoice.line'),
+                        ]):
+                date = commission.origin.invoice.reconciled or today
+                date2commissions[date].append(commission)
+        to_write = []
+        for date, commissions in date2commissions.items():
+            to_write.append(commissions)
+            to_write.append({
+                'date': date,
+                })
+        if to_write:
+            Commission.write(*to_write)
 
     @classmethod
     def _get_commissions_to_delete(cls, ids):
@@ -96,7 +105,7 @@ class Invoice(metaclass=PoolMeta):
 
     @classmethod
     @ModelView.button
-    @Workflow.transition('cancel')
+    @Workflow.transition('cancelled')
     def cancel(cls, invoices):
         # Because domain resolution of the field `reference` creates
         # a non-optimized query: we temporary created two function to be
@@ -182,7 +191,10 @@ class InvoiceLine(metaclass=PoolMeta):
             commission = Commission()
             commission.origin = self
             if plan.commission_method == 'posting':
-                commission.date = today
+                commission.date = self.invoice.invoice_date or today
+            elif (plan.commission_method == 'payment'
+                    and self.invoice.state == 'paid'):
+                commission.date = self.invoice.reconciled or today
             commission.agent = agent
             commission.product = plan.commission_product
             commission.amount = amount
@@ -218,3 +230,25 @@ class InvoiceLine(metaclass=PoolMeta):
         default.setdefault('commissions', None)
         default.setdefault('from_commissions', None)
         return super(InvoiceLine, cls).copy(lines, default=default)
+
+
+class CreditInvoiceStart(metaclass=PoolMeta):
+    __name__ = 'account.invoice.credit.start'
+    with_agent = fields.Boolean(
+        "With Agent",
+        help="Check to keep the original invoice's agent.")
+
+    @classmethod
+    def default_with_agent(cls):
+        return True
+
+
+class CreditInvoice(metaclass=PoolMeta):
+    __name__ = 'account.invoice.credit'
+
+    @property
+    def _credit_options(self):
+        options = super()._credit_options
+        if not self.start.with_agent:
+            options['agent'] = None
+        return options
