@@ -34,7 +34,7 @@ Create fiscal year::
     >>> fiscalyear.click('create_period')
     >>> if today.year != tomorrow.year:
     ...     fiscalyear = set_fiscalyear_invoice_sequences(
-    ...     create_fiscalyear(company, today=tomorrow))
+    ...         create_fiscalyear(company, today=tomorrow))
     >>> fiscalyear.click('create_period')
 
 Create chart of accounts::
