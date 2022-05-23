@@ -114,7 +114,9 @@ class Invoice(metaclass=PoolMeta):
         pool = Pool()
         Commission = pool.get('commission')
 
-        invoices_to_revert_commission = [x for x in invoices if not x.move]
+        # COOG Specific: always revert commissions
+        # invoices_to_revert_commission = [x for x in invoices if not x.move]
+        invoices_to_revert_commission = invoices
 
         super(Invoice, cls).cancel(invoices)
 
