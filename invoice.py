@@ -66,18 +66,29 @@ class Invoice(metaclass=PoolMeta):
         Commission = pool.get('commission')
         InvoiceLine = pool.get('account.invoice.line')
 
-        today = Date.today()
-
-        for sub_invoices in grouped_slice(invoices):
-            ids = [i.id for i in sub_invoices]
-            commissions = Commission.search([
-                    ('date', '=', None),
-                    ('origin', 'in', [str(x) for x in InvoiceLine.search(
-                                [('invoice', 'in', ids)])]),
-                    ])
-            Commission.write(commissions, {
-                    'date': today,
-            })
+        date2commissions = defaultdict(list)
+        for company, c_invoices in groupby(invoices, key=lambda i: i.company):
+            with Transaction().set_context(company=company.id):
+                today = Date.today()
+            for sub_invoices in grouped_slice(list(c_invoices)):
+                ids = [i.id for i in sub_invoices]
+                # JMO : Query optimization
+                commissions = Commission.search([
+                        ('date', '=', None),
+                        ('origin', 'in', [str(x) for x in InvoiceLine.search(
+                                    [('invoice', 'in', ids)])]),
+                        ])
+                for commission in commissions:
+                    date = commission.origin.invoice.reconciled or today
+                    date2commissions[date].append(commission)
+        to_write = []
+        for date, commissions in date2commissions.items():
+            to_write.append(commissions)
+            to_write.append({
+                'date': date,
+                })
+        if to_write:
+            Commission.write(*to_write)
 
     @classmethod
     def _get_commissions_to_delete(cls, ids):
