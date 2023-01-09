@@ -1,6 +1,8 @@
 # This file is part of Tryton.  The COPYRIGHT file at the top level of
 # this repository contains the full copyright notices and license terms.
 from collections import defaultdict
+from itertools import groupby
+
 from trytond.pool import PoolMeta, Pool
 from trytond.model import ModelView, Workflow, fields
 from trytond.pyson import Eval, If, Bool
@@ -62,18 +64,23 @@ class Invoice(metaclass=PoolMeta):
         pool = Pool()
         Date = pool.get('ir.date')
         Commission = pool.get('commission')
-
-        today = Date.today()
+        InvoiceLine = pool.get('account.invoice.line')
 
         date2commissions = defaultdict(list)
-        for sub_invoices in grouped_slice(invoices):
-            ids = [i.id for i in sub_invoices]
-            for commission in Commission.search([
+        for company, c_invoices in groupby(invoices, key=lambda i: i.company):
+            with Transaction().set_context(company=company.id):
+                today = Date.today()
+            for sub_invoices in grouped_slice(list(c_invoices)):
+                ids = [i.id for i in sub_invoices]
+                # JMO : Query optimization
+                commissions = Commission.search([
                         ('date', '=', None),
-                        ('origin.invoice', 'in', ids, 'account.invoice.line'),
-                        ]):
-                date = commission.origin.invoice.reconciled or today
-                date2commissions[date].append(commission)
+                        ('origin', 'in', [str(x) for x in InvoiceLine.search(
+                                    [('invoice', 'in', ids)])]),
+                        ])
+                for commission in commissions:
+                    date = commission.origin.invoice.reconciled or today
+                    date2commissions[date].append(commission)
         to_write = []
         for date, commissions in date2commissions.items():
             to_write.append(commissions)
